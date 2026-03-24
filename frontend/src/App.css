@@ -1,0 +1,528 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Ajuste o container para permitir rolagem */
+.setup-container {
+  width: 100%; /* Largura total da tela */
+  min-height: 100vh; /* Altura mínima da tela */
+  height: auto; /* Deixa crescer conforme a lista aumenta */
+  background-color: #0b0e14;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Começa do topo */
+  overflow-x: hidden; /* MATA O SCROLL PARA A DIREITA */
+  
+}
+
+/* Card Principal */
+/* .card-pokemon {
+  background: linear-gradient(180deg, #1a1c21 0%, #0b0c0e 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+  padding: 20px;
+  width: 250px;
+  text-align: center;
+  position: relative;
+  transition: transform 0.3s ease;
+} */
+
+.card-pokemon {
+  /* Fundo escuro com o reflexo da Pokébola */
+  background: 
+    radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 60%), 
+    linear-gradient(180deg, #1a1c21 0%, #0b0c0e 100%);
+  
+  border-radius: 25px;
+  padding: 20px;
+  width: 100%; /* Ocupa o espaço da coluna do grid */
+  color: white; /* Letras Brancas */
+  text-align: center;
+  position: relative;
+  overflow: visible; /* Para o Pokémon sair pra fora */
+  border-bottom: 4px solid #4ec54b; /* Brilho embaixo */
+  margin-top: 50px; /* Dá espaço para o Pokémon que está flutuando */
+  margin: 0 auto;
+
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Transição suave com um leve 'balanço' *//* Transição suave com um leve 'balanço' */
+}
+
+/* Aplica o brilho dinâmico no hover */
+.card-pokemon:hover {
+  transform: translateY(-15px); /* Faz subir */
+  box-shadow: 0 20px 40px var(--tipo-cor); /* Usa a cor que definimos antes */
+  border-bottom-width: 6px; /* Aumenta um pouco a borda de baixo */
+}
+
+/* Opcional: Faz o Pokémon dar uma leve crescida junto */
+.card-pokemon:hover .poke-imagem {
+  transform: scale(1.1) translateY(-5px);
+}
+
+.poke-id {
+  position: absolute;
+  top: 90px;
+  right: 25px;
+
+  font-size: 14px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.3); /* Branco sutil/transparente */
+  font-family: sans-serif;
+  z-index: 10; /* Garante que fique visível */
+}
+
+/* Bolinhas do lado do nome */
+.poke-nome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 22px;
+  margin: 15px 0;
+}
+
+.poke-nome::before, .poke-nome::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+/* Ajustando os textos de altura e peso */
+.poke-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  color: #fff;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 14px;
+}
+
+.stat-item span {
+  color: #aaa; /* Texto "Altura/Peso" mais cinza */
+}
+
+/* Imagem flutuando um pouco para fora */
+.poke-imagem {
+  width: 160px;
+  margin-top: -80px; /* Isso faz ela subir como na foto */
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+
+  /* ADICIONE ESTA LINHA ABAIXO */
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  position: relative;
+  z-index: 5;
+}
+
+/* Estilo das Tags de Tipo */
+.tag {
+  padding: 5px 15px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 5px;
+}
+
+/* label icon */
+.label-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px; /* Espaço entre o ícone e a palavra */
+  margin-top: 5px;
+}
+
+.label-icon span {
+  font-size: 12px;
+  color: #aaa;
+  text-decoration: capitalize;
+}
+
+/* Estilo do botão 'Mais detalhes' */
+.btn-detalhes {
+  /* 1. Fundo e Texto (cores) */
+  background-color: #1a1c21;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  /* 2. Forma (Arredondado) */
+  border-radius: 12px;
+  /* 3. Espaçamento e Tamanho */
+  padding: 12px 24px;
+  width: 100%;
+  max-width: 200px;
+  margin: 20px auto 0 auto;
+  /* 4. Alinhamento Interno (Ícone + Texto) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  /* 5. Outros Detalhes Importantes */
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Efeito ao passar o mouse (Hover) para dar vida */
+.btn-detalhes:hover {
+  background-color: #25282e;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Organiza os cards em 3 colunas, igual na foto que você mandou */
+.pokemon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 100px 20px; /* Espaço grande no topo para o Pokémon não bater no de cima */
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 0; /* Espaço para o primeiro card não bater no topo */
+}
+
+/* Container que alinha as duas colunas */
+.pokedex-header {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 40px 0 60px 0;
+}
+
+.label-container {
+  color: #aaa;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.label-texto {
+  color: #ffffff; /* Letra branca/clara como na imagem */
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* A CAIXA ESCURA (O "BOX") */
+.barra-background-escura {
+  background-color: #0d121b; /* Cor idêntica à imagem */
+  border: 1px solid #1e232e;
+  border-radius: 12px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+
+/* ATIVA O SCROLL PARA A DIREITA */
+.barra-scroll {
+  max-width: 480px; /* Limita o tamanho para o scroll aparecer */
+  overflow-x: auto; /* Habilita o scroll horizontal */
+  gap: 12px;
+  scrollbar-width: none; /* Esconde a barra no Firefox */
+}
+
+.barra-scroll::-webkit-scrollbar {
+  display: none; /* Esconde a barra no Chrome/Safari */
+}
+
+.scroll-horizontal {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  overflow-x: auto; /* Habilita o scroll */
+  white-space: nowrap; /* Impede que os ícones quebrem linha */
+  padding: 0 15px;
+  scrollbar-width: none; /* Esconde a barra no Firefox */
+  max-width: 450px; /* Ajuste conforme o tamanho que você quer na tela */
+}
+
+.scroll-horizontal::-webkit-scrollbar {
+  display: none; /* Esconde a barra no Chrome/Safari */
+}
+
+/* Garante que os ícones não "encolham" para caber */
+.tipo-circulo {
+  flex-shrink: 0; 
+}
+
+/* Ícones coloridos (Garante que não fiquem pretos ou brancos) */
+.icon-tipo-svg {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+/* Input e Botão Roxo */
+.input-wrapper {
+  width: 380px;
+  padding: 0 0 0 15px;
+  justify-content: space-between;
+  overflow: hidden; 
+}
+
+.input-wrapper input {
+  background: transparent;
+  border: none;
+  color: white;
+  outline: none;
+  width: 100%;
+}
+
+.botao-roxo-busca {
+  background: linear-gradient(135deg, #6d28d9 0%, #a855f7 100%);
+  border: none;
+  height: 100%;
+  padding: 0 20px;
+  cursor: pointer;
+}
+
+.input-group {
+  display: flex;
+  background: #1a1c21;
+  border-radius: 10px;
+  padding: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.input-group input {
+  background: transparent;
+  border: none;
+  color: white;
+  padding: 5px;
+  outline: none;
+}
+
+.btn-busca {
+  background: linear-gradient(90deg, #7e22ce, #a855f7);
+  border: none;
+  border-radius: 8px;
+  padding: 0 15px;
+  cursor: pointer;
+}
+
+.icones-lista {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Estilo base da bolinha */
+.tipo-circulo {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #1a1c21; /* Cor escura padrão */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Garante que o ícone interno fique visível e centralizado */
+.icon-tipo-svg {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  filter: brightness(0) invert(1); /* Tenta forçar o ícone a ficar branco */
+}
+
+.pokemon-destaque {
+  width: 100%;
+  min-height: 85vh; /* Ocupa quase a tela toda */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  position: relative;
+  color: white;
+  font-family: 'Poppins', sans-serif; /* Se tiver essa fonte, fica top */
+  
+  /* Faz a curva arredondada lá embaixo */
+  border-bottom-left-radius: 50% 120px;
+  border-bottom-right-radius: 50% 120px;
+
+  transition: background-color 0.5s ease; /* Muda de cor suave quando trocar o poke */
+}
+
+/* Cor de fundo para Grass (Grama) */
+/* Cores Dinâmicas para o Destaque */
+.pokemon-destaque.grass { background: linear-gradient(180deg, #5dbb63 0%, #3e8e45 100%); }
+.pokemon-destaque.fire { background: linear-gradient(180deg, #ff7402 0%, #ffc107 100%); }
+.pokemon-destaque.water { background: linear-gradient(180deg, #4592c4 0%, #1472af 100%); }
+.pokemon-destaque.bug { background: linear-gradient(180deg, #729f3f 0%, #5d8133 100%); }
+.pokemon-destaque.poison { background: linear-gradient(180deg, #a040a0 0%, #6b2a6b 100%); }
+.pokemon-destaque.electric { background: linear-gradient(180deg, #eed535 0%, #c7b01a 100%); }
+.pokemon-destaque.ground { background: linear-gradient(180deg, #ab9842 0%, #8e7e37 100%); }
+.pokemon-destaque.fairy { background: linear-gradient(180deg, #fdb9e9 0%, #e570c0 100%); }
+.pokemon-destaque.fighting { background: linear-gradient(180deg, #d56723 0%, #a54e1a 100%); }
+.pokemon-destaque.psychic { background: linear-gradient(180deg, #f366b9 0%, #d1449c 100%); }
+.pokemon-destaque.rock { background: linear-gradient(180deg, #a38c21 0%, #7d6b1a 100%); }
+.pokemon-destaque.ghost { background: linear-gradient(180deg, #7b62a3 0%, #5a4877 100%); }
+.pokemon-destaque.ice { background: linear-gradient(180deg, #51c4e7 0%, #359ebc 100%); }
+.pokemon-destaque.dragon { background: linear-gradient(180deg, #53a4cf 0%, #f16e57 100%); }
+.pokemon-destaque.normal { background: linear-gradient(180deg, #a4acaf 0%, #7d8386 100%); }
+
+/* Organiza o conteúdo em duas colunas */
+.destaque-conteudo {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+}
+
+/* Coluna do Texto */
+.destaque-informacoes {
+  flex: 1;
+  max-width: 500px;
+  text-align: left;
+}
+
+.nome-destaque {
+  font-size: 80px; /* Nome bem grande */
+  text-transform: capitalize;
+  margin: 10px 0;
+  font-weight: 800;
+}
+
+.descricao-destaque {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+/* Botão "Mais detalhes" */
+.btn-principal {
+  background: #1a1a1a;
+  color: white;
+  border: none;
+  padding: 15px 35px;
+  border-radius: 30px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-principal:hover {
+  transform: scale(1.05);
+  background: #000;
+}
+
+/* Coluna da Imagem */
+.destaque-imagem-bloco {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.poke-image-grande {
+  width: 100%;
+  max-width: 550px;
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.3));
+  animation: flutuar 4s ease-in-out infinite;
+}
+
+@keyframes flutuar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-25px); }
+}
+
+/* Ícones de Redes Sociais */
+.redes-sociais {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+}
+
+.redes-sociais svg {
+  cursor: pointer;
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+.redes-sociais svg:hover {
+  opacity: 1;
+  transform: translateY(-5px);
+}
+
+/* --- CORES PARA PERCEBER O TIPO --- */
+
+/* Quando passar o mouse, a bolinha INTEIRA ganha a cor do elemento */
+.tipo-circulo.grass:hover { background-color: #4ec54b; box-shadow: 0 0 12px #4ec54b; border-color: #fff; }
+.tipo-circulo.fire:hover { background-color: #ff5a5a; box-shadow: 0 0 12px #ff5a5a; border-color: #fff; }
+.tipo-circulo.water:hover { background-color: #5a9fff; box-shadow: 0 0 12px #5a9fff; border-color: #fff; }
+.tipo-circulo.electric:hover { background-color: #fbd200; box-shadow: 0 0 12px #fbd200; border-color: #fff; }
+.tipo-circulo.poison:hover { background-color: #a040a0; box-shadow: 0 0 12px #a040a0; border-color: #fff; }
+.tipo-circulo.bug:hover { background-color: #91a119; box-shadow: 0 0 12px #91a119; border-color: #fff; }
+.tipo-circulo.ground:hover { background-color: #e0c068; box-shadow: 0 0 12px #e0c068; border-color: #fff; }
+.tipo-circulo.fairy:hover { background-color: #ee99ac; box-shadow: 0 0 12px #ee99ac; border-color: #fff; }
+.tipo-circulo.flying:hover { background-color: #A98FF3; box-shadow: 0 0 15px #A98FF3; border-color: #fff; }
+.tipo-circulo.normal:hover { background-color: #A8A77A; box-shadow: 0 0 15px #A8A77A; border-color: #fff; }
+.tipo-circulo.fighting:hover { background-color: #C22E28; box-shadow: 0 0 15px #C22E28; border-color: #fff; }
+.tipo-circulo.psychic:hover { background-color: #F95587; box-shadow: 0 0 15px #F95587; border-color: #fff; }
+.tipo-circulo.all:hover {background-color: #333;border-color: white;}
+
+/* Cores das Tags (Pílulas de tipo) */
+.tag.grass { background-color: #4ec54b; color: #fff; }
+.tag.poison { background-color: #a040a0; color: #fff; }
+.tag.fire { background-color: #ff5a5a; color: #fff; }
+.tag.water { background-color: #5a9fff; color: #fff; }
+.tag.bug { background-color: #91a119; color: #fff; }
+.tag.normal { background-color: #a8a878; color: #fff; }
+.tag.electric { background-color: #fbd200; color: #000; } /* Elétrico geralmente usa letra preta por ser claro */
+.tag.ground { background-color: #e0c068; color: #fff; }
+.tag.fairy { background-color: #ee99ac; color: #fff; }
+.tag.fighting { background-color: #c03028; color: #fff; }
+.tag.psychic { background-color: #f85888; color: #fff; }
+.tag.rock { background-color: #b8a038; color: #fff; }
+.tag.ghost { background-color: #705898; color: #fff; }
+.tag.ice { background-color: #98d8d8; color: #000; }
+.tag.dragon { background-color: #7038f8; color: #fff; }
+.tag.flying { background-color: #A98FF3; color: #fff; }
+
+/* --- ILUMINAÇÃO DINÂMICA DOS CARDS --- */
+
+/* Grama e Veneno (Já que o Bulbasaur tem os dois) */
+.card-pokemon.grass { border-bottom-color: #4ec54b; --tipo-cor: rgba(78, 197, 75, 0.4); }
+.card-pokemon.poison { border-bottom-color: #a040a0; --tipo-cor: rgba(160, 64, 160, 0.4); }
+
+/* Fogo, Água e Elétrico */
+.card-pokemon.fire { border-bottom-color: #ff5a5a; --tipo-cor: rgba(255, 90, 90, 0.4); }
+.card-pokemon.water { border-bottom-color: #5a9fff; --tipo-cor: rgba(90, 159, 255, 0.4); }
+.card-pokemon.electric { border-bottom-color: #fbd200; --tipo-cor: rgba(251, 210, 0, 0.4); }
+
+/* Inseto, Voador e Normal */
+.card-pokemon.bug { border-bottom-color: #91a119; --tipo-cor: rgba(145, 161, 25, 0.4); }
+.card-pokemon.flying { border-bottom-color: #a890f0; --tipo-cor: rgba(168, 144, 240, 0.4); }
+.card-pokemon.normal { border-bottom-color: #a8a878; --tipo-cor: rgba(168, 168, 120, 0.4); }
+
+/* Chão, Pedra e Gelo */
+.card-pokemon.ground { border-bottom-color: #e0c068; --tipo-cor: rgba(224, 192, 104, 0.4); }
+.card-pokemon.rock { border-bottom-color: #b8a038; --tipo-cor: rgba(184, 160, 56, 0.4); }
+.card-pokemon.ice { border-bottom-color: #98d8d8; --tipo-cor: rgba(152, 216, 216, 0.4); }
+
+/* Psíquico, Lutador e Fada */
+.card-pokemon.psychic { border-bottom-color: #f85888; --tipo-cor: rgba(248, 88, 136, 0.4); }
+.card-pokemon.fighting { border-bottom-color: #c03028; --tipo-cor: rgba(192, 48, 40, 0.4); }
+.card-pokemon.fairy { border-bottom-color: #ee99ac; --tipo-cor: rgba(238, 153, 172, 0.4); }
+
+/* Fantasma, Dragão e Aço */
+.card-pokemon.ghost { border-bottom-color: #705898; --tipo-cor: rgba(112, 88, 152, 0.4); }
+.card-pokemon.dragon { border-bottom-color: #7038f8; --tipo-cor: rgba(112, 56, 248, 0.4); }
+.card-pokemon.steel { border-bottom-color: #b8b8d0; --tipo-cor: rgba(184, 184, 208, 0.4); }
+
