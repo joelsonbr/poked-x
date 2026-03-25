@@ -425,7 +425,7 @@ function App() {
                       <div className="bar-container">
                         <div
                           className={`bar-fill ${s.base_stat >= 50 ? "high" : "low"}`}
-                          style={{ width: `${(s.base_stat / 150) * 150}%` }}
+                          style={{ width: `${(s.base_stat / 255) * 100}%` }}
                         ></div>
                       </div>
                     </div>
@@ -434,33 +434,46 @@ function App() {
                   <div className="stat-row-bar">
                     <span className="label-cinza-stats">Total</span>
                     <span className="valor-status">
-                      {[
-                        pokemonAberto.stats.reduce(
-                          (acc, s) => acc + s.base_stat,
-                          0,
-                        ),
-                      ]}
+                      {/* Removemos os [] e deixamos só o reduce */}
+                      {pokemonAberto.stats.reduce(
+                        (acc, s) => acc + s.base_stat,
+                        0,
+                      )}
                     </span>
                     <div className="bar-container">
                       <div
                         className="bar-fill total"
-                        style={{ width: "50%" }}
+                        style={{
+                          width: `${(pokemonAberto.stats.reduce((acc, s) => acc + s.base_stat, 0) / 720) * 100}%`,
+                        }}
                       ></div>
                     </div>
                   </div>
+
                   {/* --- SEÇÃO DE DEFESAS --- */}
                   <div className="type-defenses-container">
                     <h3 className="section-title-small">Type Defenses</h3>
                     <p className="label-cinza-pequeno">
-                      The effectiveness of each type on {pokemonAberto.name}
+                      he effectiveness of each type on {pokemonAberto.name}
                     </p>
 
+                    {/* --- NOVA LEGENDA COLORIDA --- */}
+                    <div className="legenda-defesa">
+                      <div className="legenda-item weakness">
+                        <span className="ponto-cor red"></span> Weakness (2x)
+                      </div>
+                      <div className="legenda-item resistance">
+                        <span className="ponto-cor green"></span> Resistance
+                        (2x)
+                      </div>
+                    </div>
+
                     <div className="tags-defesas-grid">
-                      {defesas ?   (
+                      {defesas ? (
                         <>
-                          {/* Renderiza as Fraquezas */}
+                          {/* Adicionei a classe 'weakness' aqui no map */}
                           {defesas.double_damage_from.map((d) => (
-                            <div key={d.name} className="defesa-item">
+                            <div key={d.name} className="defesa-item weakness">
                               <span className={`tag-tipo-fixa ${d.name}`}>
                                 {d.name}
                               </span>
@@ -468,9 +481,12 @@ function App() {
                             </div>
                           ))}
 
-                          {/* Renderiza as Resistências */}
+                          {/* Adicionei a classe 'resistance' aqui no map */}
                           {defesas.half_damage_from.map((d) => (
-                            <div key={d.name} className="defesa-item">
+                            <div
+                              key={d.name}
+                              className="defesa-item resistance"
+                            >
                               <span className={`tag-tipo-fixa ${d.name}`}>
                                 {d.name}
                               </span>

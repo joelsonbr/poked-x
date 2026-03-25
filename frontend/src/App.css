@@ -865,7 +865,7 @@
   min-height: 300px;
   z-index: 1;
   color: #333;
-  height: 380px;
+  height: 510px;
 }
 
 
@@ -939,10 +939,8 @@
 
 .section-title-small {
   font-size: 16px;
-  color: #ffffff;
-  margin-bottom: 20px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  color: #fff;
+  margin-bottom: 5px;
 }
 
 /* Alinhamento das Linhas */
@@ -1005,67 +1003,81 @@
   animation: fadeIn 0.4s ease; /* Usando aquele que já criamos para o Breeding */
 }
 
+/* Container que segura o nome do stat, valor e barra */
 .stat-row-bar {
   display: flex;
   align-items: center;
   margin-bottom: 12px;
+  gap: 10px;
 }
 
 .label-cinza-stats {
-  color: #888;
-  width: 80px;
+  width: 80px; /* Largura fixa para alinhar tudo */
+  font-size: 13px;
+  color: #a0a0a0;
+  font-weight: 600;
   text-transform: capitalize;
-  font-size: 14px;
 }
 
 .valor-status {
   width: 35px;
+  font-size: 14px;
   font-weight: bold;
   color: #ffffff;
-  font-size: 14px;
+  text-align: right;
 }
 
 .bar-container {
   flex: 1;
-  background-color: #333; /* Fundo da barra */
-  height: 6px;
+  height: 8px; /* Um pouco mais grossa para destacar */
+  background: rgba(255, 255, 255, 0.1); /* Fundo cinza suave */
   border-radius: 10px;
+  overflow: hidden; /* Garante que o preenchimento não saia da borda */
   margin-left: 10px;
-  overflow: hidden;
 }
 
 .bar-fill {
   height: 100%;
-  border-radius: 10px;
-  transition: width 0.8s ease-in-out;
+  border-radius: 20px;
+  transition: width 1s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efeito elástico */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Cores das barras baseado na força */
-.bar-fill.low { background-color: #fb6c6c; }    /* Vermelho */
-.bar-fill.high { background-color: #48d0b0; }   /* Verde */
-.bar-fill.total { background-color: #48d0b0; }
+/* Cores vibrantes com gradiente */
+.bar-fill.low {
+  background: linear-gradient(90deg, #ff421c, #ff6b4a);
+  box-shadow: 0 0 8px rgba(255, 66, 28, 0.4);
+}
+
+.bar-fill.high {
+  background: linear-gradient(90deg, #48d0b0, #61e7c9);
+  box-shadow: 0 0 8px rgba(72, 208, 176, 0.4);
+}
+
+/* Destaque para a barra de Total */
+.bar-fill.total {
+  background: linear-gradient(90deg, #5dade2, #85c1e9);
+  box-shadow: 0 0 10px rgba(93, 173, 226, 0.5);
+}
 
 .animate-in {
   animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Container que segura o título e as tags */
 .type-defenses-container {
-  width: 100%;
-  margin-top: 15px;
-  box-sizing: border-box; /* Garante que o padding não estique o elemento */
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* A Grid onde ficam as tags de tipo */
 .tags-defesas-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Mantém duas colunas */
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
-  
-  /* --- TRAVA DE SEGURANÇA --- */
-  max-height: 150px;       /* Limita a altura para caber na caixinha branca */
-  overflow-y: auto;        /* Cria o scroll apenas nesta área se necessário */
-  padding-right: 5px;      /* Espaço para a barra de scroll não amassar as tags */
+  max-height: 200px;
+  overflow-y: auto;
+  padding-right: 8px;
   height: 100px;
 }
 
@@ -1078,16 +1090,60 @@
   border-radius: 10px;
 }
 
-/* O item individual (ex: FLYING 2x) */
-.defesa-item {
+/* --- LEGENDA (Os pontinhos coloridos) --- */
+.legenda-defesa {
+  display: flex;
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.legenda-item {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Nome na esquerda, número na direita */
-  background: rgba(255, 255, 255, 0.08); /* Fundo sutil */
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #888;
+  gap: 8px;
 }
+
+.ponto-cor {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* Cores da legenda */
+.ponto-cor.red {
+  background-color: #ff421c; /* Vermelho vibrante */
+  box-shadow: 0 0 5px rgba(255, 66, 28, 0.5); /* Efeito de brilho */
+}
+
+.ponto-cor.green {
+  background-color: #48d0b0; /* Verde vibrante */
+  box-shadow: 0 0 5px rgba(72, 208, 176, 0.5);
+}
+
+/* --- AS BORDINHAS NAS TAGS (IGUAL AO PRINT) --- */
+.defesa-item {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 4px solid transparent;
+  transition: transform 0.2s;
+}
+
+.defesa-item:hover {
+  transform: translateX(3px);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.defesa-item.weakness { border-left-color: #ff421c; }
+.defesa-item.resistance { border-left-color: #48d0b0; }
+
 
 /* Ajuste das tags de tipo */
 .tag-tipo-fixa {
@@ -1104,8 +1160,8 @@
 
 /* O texto do multiplicador (2x, 1/2x) */
 .multiplicador {
-  font-size: 13px;
-  font-weight: bold;
+  font-weight: 800;
+  font-size: 12px;
   color: #fff;
   opacity: 0.9;
 }
@@ -1129,3 +1185,24 @@
 .dragon { background-color: #7038f8; }
 .dark { background-color: #705848; }
 .normal { background-color: #a8a878; }
+
+.defesa-subtitulo {
+  grid-column: 1 / -1; /* Faz o título ocupar as duas colunas */
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #a0a0a0;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 3px;
+}
+
+/* Opcional: Uma borda colorida sutil para diferenciar */
+.defesa-item.weakness {
+  border-left: 3px solid #ff421c; /* Vermelhinho para fraqueza */
+}
+
+.defesa-item.resistance {
+  border-left: 3px solid #78c850; /* Verde para resistência */
+}
