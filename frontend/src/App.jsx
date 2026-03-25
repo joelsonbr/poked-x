@@ -8,7 +8,8 @@ import {
   Globe,
   UserRound,
   Mail,
-} from "lucide-react"; // 1. Corrigi os nomes aqui
+  ArrowLeft,
+} from "lucide-react";
 import { useState, useEffect } from "react";
 import "./App.css";
 
@@ -17,12 +18,42 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [pesquisa, setPesquisa] = useState("");
   const [filtroTipo, setFiltroTipo] = useState("all");
+  const [pokemonAberto, setPokemonAberto] = useState(null);
+  const [especieDados, setEspecieDados] = useState(null);
+  const [abaAtiva, setAbaAtiva] = useState("about");
+  const [defesas, setDefesas] = useState(null);
+
+  const carregarDetalhesCompletos = async (pokemon) => {
+    setPokemonAberto(pokemon);
+    setEspecieDados(null);
+    setAbaAtiva("about"); // Sempre abre no About por padrão
+    setDefesas(null); // Limpa as defesas do Pokémon anterior
+
+    try {
+      // 1. Busca os dados da Espécie (o que você já tinha)
+      const respostaEspecie = await fetch(
+        `https://pokeapi.co/api/v2/pokemon-species/${pokemon.id}`,
+      );
+      const dadosEspecie = await respostaEspecie.json();
+      setEspecieDados(dadosEspecie);
+
+      // 2. Busca as Defesas (Baseado no tipo principal do Pokémon)
+      // Pegamos a URL do primeiro tipo dele: pokemon.types[0].type.url
+      const respostaTipo = await fetch(pokemon.types[0].type.url);
+      const dadosTipo = await respostaTipo.json();
+
+      // Salvamos as "damage_relations" que contém quem dá 2x, 0.5x, etc.
+      setDefesas(dadosTipo.damage_relations);
+    } catch (erro) {
+      console.error("Erro ao carregar detalhes:", erro);
+    }
+  };
 
   useEffect(() => {
     async function carregarPokemons() {
       try {
         const response = await fetch(
-          "https://pokeapi.co/api/v2/pokemon?limit=101",
+          "https://pokeapi.co/api/v2/pokemon?limit=150",
         );
         const data = await response.json();
         const promessas = data.results.map(async (item) => {
@@ -106,7 +137,13 @@ function App() {
               treinador!
             </p>
 
-            <button className="btn-principal">
+            <button
+              className="btn-principal"
+              onClick={() =>
+                pokemonDestaque && carregarDetalhesCompletos(pokemonDestaque)
+              }
+              disabled={!pokemonDestaque} // Desativa o botão se não houver pokemon carregado
+            >
               <Zap size={20} /> Mais detalhes
             </button>
 
@@ -170,9 +207,6 @@ function App() {
               value={pesquisa}
               onChange={(e) => setPesquisa(e.target.value)}
             />
-            <button className="botao-roxo-busca">
-              <Search size={20} color="white" />
-            </button>
           </div>
         </div>
       </header>
@@ -225,12 +259,248 @@ function App() {
               </div>
             </div>
 
-            <button className="btn-detalhes">
+            <button
+              className="btn-detalhes"
+              onClick={() => carregarDetalhesCompletos(poke)}
+            >
               <Zap size={16} /> Mais detalhes
             </button>
           </div>
         ))}
       </div>
+
+      {/* a janela sobre o pokemon */}
+      {pokemonAberto && (
+        <div className="modal-teste">
+          <div className={`modal-caixa ${pokemonAberto.types[0].type.name}`}>
+            {/* Topo com Nome, ID e Botão Voltar */}
+            <div className="modal-header-topo">
+              <button
+                className="btn-voltar"
+                onClick={() => setPokemonAberto(null)}
+              >
+                <ArrowLeft />
+              </button>
+              <span className="modal-id">
+                #{String(pokemonAberto.id).padStart(3, "0")}
+              </span>
+            </div>
+
+            <div className="modal-info-principal">
+              <h1 className="modal-nome">{pokemonAberto.name}</h1>
+              <div className="modal-tipos">
+                {pokemonAberto.types.map((t) => (
+                  <span key={t.type.name} className="tag-modal">
+                    {t.type.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Imagem grande do Pokémon */}
+            <div className="modal-imagem-container">
+              <img
+                src={
+                  pokemonAberto.sprites.other["official-artwork"].front_default
+                }
+                alt={pokemonAberto.name}
+                className="modal-img-poke"
+              />
+            </div>
+
+            {/* NOVA PARTE: O corpo branco com os detalhes */}
+            <div className="modal-detalhes-branco">
+              <nav className="modal-nav">
+                <span
+                  className={abaAtiva === "about" ? "active" : ""}
+                  onClick={() => setAbaAtiva("about")}
+                >
+                  About
+                </span>
+                <span
+                  className={abaAtiva === "stats" ? "active" : ""}
+                  onClick={() => setAbaAtiva("stats")}
+                >
+                  Base Stats
+                </span>
+                <span>Evolution</span>
+              </nav>
+
+              {/* CONTEÚDO DA ABA ABOUT */}
+              {abaAtiva === "about" && (
+                <div className="modal-stats-list animate-in">
+                  <div className="modal-stats-list">
+                    <div className="stat-row-clean">
+                      <span className="label-cinza">Species</span>
+                      <span className="valor-preto">
+                        {especieDados
+                          ? especieDados.genera.find(
+                              (g) => g.language.name === "en",
+                            )?.genus
+                          : "Loading..."}
+                      </span>
+                    </div>
+
+                    <div className="stat-row-clean">
+                      <span className="label-cinza">Height</span>
+                      <span className="valor-preto">
+                        {pokemonAberto.height / 10} m (
+                        {pokemonAberto.height * 10} cm)
+                      </span>
+                    </div>
+
+                    <div className="stat-row-clean">
+                      <span className="label-cinza">Weight</span>
+                      <span className="valor-preto">
+                        {pokemonAberto.weight / 10} kg
+                      </span>
+                    </div>
+
+                    <div className="stat-row-clean">
+                      <span className="label-cinza">Abilities</span>
+                      <span className="valor-preto">
+                        {pokemonAberto.abilities
+                          .map((a) => a.ability.name)
+                          .join(", ")}
+                      </span>
+                    </div>
+
+                    <div className="breeding-section">
+                      <h3 className="section-title-small">Breeding</h3>
+
+                      <div className="stat-row-clean">
+                        <span className="label-cinza">Gender</span>
+                        <div className="gender-values">
+                          {especieDados ? (
+                            especieDados.gender_rate === -1 ? (
+                              <span className="valor-preto">Genderless</span>
+                            ) : (
+                              <>
+                                <span className="male">
+                                  ♂ {100 - especieDados.gender_rate * 12.5}%
+                                </span>
+                                <span className="female">
+                                  ♀ {especieDados.gender_rate * 12.5}%
+                                </span>
+                              </>
+                            )
+                          ) : (
+                            "..."
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="stat-row-clean">
+                        <span className="label-cinza">Egg Groups</span>
+                        <span className="valor-preto">
+                          {especieDados
+                            ? especieDados.egg_groups
+                                .map((g) => g.name)
+                                .join(", ")
+                            : "Loading..."}
+                        </span>
+                      </div>
+
+                      <div className="stat-row-clean">
+                        <span className="label-cinza">Egg Cycle</span>
+                        <span className="valor-preto">
+                          {especieDados ? especieDados.hatch_counter : "..."}{" "}
+                          steps
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* CONTEÚDO DA ABA BASE STATS */}
+              {abaAtiva === "stats" && (
+                <div className="modal-stats-list animate-in">
+                  {pokemonAberto.stats.map((s) => (
+                    <div className="stat-row-bar" key={s.stat.name}>
+                      <span className="label-cinza-stats">
+                        {s.stat.name.replace("special-", "Sp. ")}
+                      </span>
+                      <span className="valor-status">{s.base_stat}</span>
+                      <div className="bar-container">
+                        <div
+                          className={`bar-fill ${s.base_stat >= 50 ? "high" : "low"}`}
+                          style={{ width: `${(s.base_stat / 150) * 150}%` }}
+                        ></div>
+                      </div>
+                    </div>
+                  ))}
+
+                  <div className="stat-row-bar">
+                    <span className="label-cinza-stats">Total</span>
+                    <span className="valor-status">
+                      {[
+                        pokemonAberto.stats.reduce(
+                          (acc, s) => acc + s.base_stat,
+                          0,
+                        ),
+                      ]}
+                    </span>
+                    <div className="bar-container">
+                      <div
+                        className="bar-fill total"
+                        style={{ width: "50%" }}
+                      ></div>
+                    </div>
+                  </div>
+                  {/* --- SEÇÃO DE DEFESAS --- */}
+                  <div className="type-defenses-container">
+                    <h3 className="section-title-small">Type Defenses</h3>
+                    <p className="label-cinza-pequeno">
+                      The effectiveness of each type on {pokemonAberto.name}
+                    </p>
+
+                    <div className="tags-defesas-grid">
+                      {defesas ?   (
+                        <>
+                          {/* Renderiza as Fraquezas */}
+                          {defesas.double_damage_from.map((d) => (
+                            <div key={d.name} className="defesa-item">
+                              <span className={`tag-tipo-fixa ${d.name}`}>
+                                {d.name}
+                              </span>
+                              <span className="multiplicador">2x</span>
+                            </div>
+                          ))}
+
+                          {/* Renderiza as Resistências */}
+                          {defesas.half_damage_from.map((d) => (
+                            <div key={d.name} className="defesa-item">
+                              <span className={`tag-tipo-fixa ${d.name}`}>
+                                {d.name}
+                              </span>
+                              <span className="multiplicador">½x</span>
+                            </div>
+                          ))}
+
+                          {/* Renderiza as Imunidades (Caso existam) */}
+                          {defesas.no_damage_from.map((d) => (
+                            <div key={d.name} className="defesa-item">
+                              <span className={`tag-tipo-fixa ${d.name}`}>
+                                {d.name}
+                              </span>
+                              <span className="multiplicador">0x</span>
+                            </div>
+                          ))}
+                        </>
+                      ) : (
+                        <p className="carregando">
+                          Buscando dados de batalha...
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

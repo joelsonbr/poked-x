@@ -14,30 +14,21 @@
   justify-content: center;
   align-items: center; /* Começa do topo */
   overflow-x: hidden; /* MATA O SCROLL PARA A DIREITA */
-  
 }
-
-/* Card Principal */
-/* .card-pokemon {
-  background: linear-gradient(180deg, #1a1c21 0%, #0b0c0e 100%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 25px;
-  padding: 20px;
-  width: 250px;
-  text-align: center;
-  position: relative;
-  transition: transform 0.3s ease;
-} */
 
 .card-pokemon {
   /* Fundo escuro com o reflexo da Pokébola */
-  background: 
-    radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 60%), 
+  background:
+    radial-gradient(
+      circle at 50% 40%,
+      rgba(255, 255, 255, 0.05) 0%,
+      transparent 60%
+    ),
     linear-gradient(180deg, #1a1c21 0%, #0b0c0e 100%);
-  
+
   border-radius: 25px;
   padding: 20px;
-  width: 100%; /* Ocupa o espaço da coluna do grid */
+  width: 250px; /* Ocupa o espaço da coluna do grid */
   color: white; /* Letras Brancas */
   text-align: center;
   position: relative;
@@ -46,7 +37,7 @@
   margin-top: 50px; /* Dá espaço para o Pokémon que está flutuando */
   margin: 0 auto;
 
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Transição suave com um leve 'balanço' *//* Transição suave com um leve 'balanço' */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Transição suave com um leve 'balanço' */ /* Transição suave com um leve 'balanço' */
 }
 
 /* Aplica o brilho dinâmico no hover */
@@ -83,8 +74,9 @@
   margin: 15px 0;
 }
 
-.poke-nome::before, .poke-nome::after {
-  content: '';
+.poke-nome::before,
+.poke-nome::after {
+  content: "";
   width: 8px;
   height: 8px;
   background-color: white;
@@ -114,7 +106,7 @@
 .poke-imagem {
   width: 160px;
   margin-top: -80px; /* Isso faz ela subir como na foto */
-  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.5));
 
   /* ADICIONE ESTA LINHA ABAIXO */
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -252,7 +244,7 @@
 
 /* Garante que os ícones não "encolham" para caber */
 .tipo-circulo {
-  flex-shrink: 0; 
+  flex-shrink: 0;
 }
 
 /* Ícones coloridos (Garante que não fiquem pretos ou brancos) */
@@ -267,7 +259,7 @@
   width: 380px;
   padding: 0 0 0 15px;
   justify-content: space-between;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .input-wrapper input {
@@ -276,14 +268,6 @@
   color: white;
   outline: none;
   width: 100%;
-}
-
-.botao-roxo-busca {
-  background: linear-gradient(135deg, #6d28d9 0%, #a855f7 100%);
-  border: none;
-  height: 100%;
-  padding: 0 20px;
-  cursor: pointer;
 }
 
 .input-group {
@@ -347,8 +331,8 @@
   padding: 40px;
   position: relative;
   color: white;
-  font-family: 'Poppins', sans-serif; /* Se tiver essa fonte, fica top */
-  
+  font-family: "Poppins", sans-serif; /* Se tiver essa fonte, fica top */
+
   /* Faz a curva arredondada lá embaixo */
   border-bottom-left-radius: 50% 120px;
   border-bottom-right-radius: 50% 120px;
@@ -358,21 +342,51 @@
 
 /* Cor de fundo para Grass (Grama) */
 /* Cores Dinâmicas para o Destaque */
-.pokemon-destaque.grass { background: linear-gradient(180deg, #5dbb63 0%, #3e8e45 100%); }
-.pokemon-destaque.fire { background: linear-gradient(180deg, #ff7402 0%, #ffc107 100%); }
-.pokemon-destaque.water { background: linear-gradient(180deg, #4592c4 0%, #1472af 100%); }
-.pokemon-destaque.bug { background: linear-gradient(180deg, #729f3f 0%, #5d8133 100%); }
-.pokemon-destaque.poison { background: linear-gradient(180deg, #a040a0 0%, #6b2a6b 100%); }
-.pokemon-destaque.electric { background: linear-gradient(180deg, #eed535 0%, #c7b01a 100%); }
-.pokemon-destaque.ground { background: linear-gradient(180deg, #ab9842 0%, #8e7e37 100%); }
-.pokemon-destaque.fairy { background: linear-gradient(180deg, #fdb9e9 0%, #e570c0 100%); }
-.pokemon-destaque.fighting { background: linear-gradient(180deg, #d56723 0%, #a54e1a 100%); }
-.pokemon-destaque.psychic { background: linear-gradient(180deg, #f366b9 0%, #d1449c 100%); }
-.pokemon-destaque.rock { background: linear-gradient(180deg, #a38c21 0%, #7d6b1a 100%); }
-.pokemon-destaque.ghost { background: linear-gradient(180deg, #7b62a3 0%, #5a4877 100%); }
-.pokemon-destaque.ice { background: linear-gradient(180deg, #51c4e7 0%, #359ebc 100%); }
-.pokemon-destaque.dragon { background: linear-gradient(180deg, #53a4cf 0%, #f16e57 100%); }
-.pokemon-destaque.normal { background: linear-gradient(180deg, #a4acaf 0%, #7d8386 100%); }
+.pokemon-destaque.grass {
+  background: linear-gradient(180deg, #5dbb63 0%, #3e8e45 100%);
+}
+.pokemon-destaque.fire {
+  background: linear-gradient(180deg, #ff7402 0%, #ffc107 100%);
+}
+.pokemon-destaque.water {
+  background: linear-gradient(180deg, #4592c4 0%, #1472af 100%);
+}
+.pokemon-destaque.bug {
+  background: linear-gradient(180deg, #729f3f 0%, #5d8133 100%);
+}
+.pokemon-destaque.poison {
+  background: linear-gradient(180deg, #a040a0 0%, #6b2a6b 100%);
+}
+.pokemon-destaque.electric {
+  background: linear-gradient(180deg, #eed535 0%, #c7b01a 100%);
+}
+.pokemon-destaque.ground {
+  background: linear-gradient(180deg, #ab9842 0%, #8e7e37 100%);
+}
+.pokemon-destaque.fairy {
+  background: linear-gradient(180deg, #fdb9e9 0%, #e570c0 100%);
+}
+.pokemon-destaque.fighting {
+  background: linear-gradient(180deg, #d56723 0%, #a54e1a 100%);
+}
+.pokemon-destaque.psychic {
+  background: linear-gradient(180deg, #f366b9 0%, #d1449c 100%);
+}
+.pokemon-destaque.rock {
+  background: linear-gradient(180deg, #a38c21 0%, #7d6b1a 100%);
+}
+.pokemon-destaque.ghost {
+  background: linear-gradient(180deg, #7b62a3 0%, #5a4877 100%);
+}
+.pokemon-destaque.ice {
+  background: linear-gradient(180deg, #51c4e7 0%, #359ebc 100%);
+}
+.pokemon-destaque.dragon {
+  background: linear-gradient(180deg, #53a4cf 0%, #f16e57 100%);
+}
+.pokemon-destaque.normal {
+  background: linear-gradient(180deg, #a4acaf 0%, #7d8386 100%);
+}
 
 /* Organiza o conteúdo em duas colunas */
 .destaque-conteudo {
@@ -433,13 +447,18 @@
 .poke-image-grande {
   width: 100%;
   max-width: 550px;
-  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.3));
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.3));
   animation: flutuar 4s ease-in-out infinite;
 }
 
 @keyframes flutuar {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-25px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-25px);
+  }
 }
 
 /* Ícones de Redes Sociais */
@@ -463,66 +482,650 @@
 /* --- CORES PARA PERCEBER O TIPO --- */
 
 /* Quando passar o mouse, a bolinha INTEIRA ganha a cor do elemento */
-.tipo-circulo.grass:hover { background-color: #4ec54b; box-shadow: 0 0 12px #4ec54b; border-color: #fff; }
-.tipo-circulo.fire:hover { background-color: #ff5a5a; box-shadow: 0 0 12px #ff5a5a; border-color: #fff; }
-.tipo-circulo.water:hover { background-color: #5a9fff; box-shadow: 0 0 12px #5a9fff; border-color: #fff; }
-.tipo-circulo.electric:hover { background-color: #fbd200; box-shadow: 0 0 12px #fbd200; border-color: #fff; }
-.tipo-circulo.poison:hover { background-color: #a040a0; box-shadow: 0 0 12px #a040a0; border-color: #fff; }
-.tipo-circulo.bug:hover { background-color: #91a119; box-shadow: 0 0 12px #91a119; border-color: #fff; }
-.tipo-circulo.ground:hover { background-color: #e0c068; box-shadow: 0 0 12px #e0c068; border-color: #fff; }
-.tipo-circulo.fairy:hover { background-color: #ee99ac; box-shadow: 0 0 12px #ee99ac; border-color: #fff; }
-.tipo-circulo.flying:hover { background-color: #A98FF3; box-shadow: 0 0 15px #A98FF3; border-color: #fff; }
-.tipo-circulo.normal:hover { background-color: #A8A77A; box-shadow: 0 0 15px #A8A77A; border-color: #fff; }
-.tipo-circulo.fighting:hover { background-color: #C22E28; box-shadow: 0 0 15px #C22E28; border-color: #fff; }
-.tipo-circulo.psychic:hover { background-color: #F95587; box-shadow: 0 0 15px #F95587; border-color: #fff; }
-.tipo-circulo.all:hover {background-color: #333;border-color: white;}
+.tipo-circulo.grass:hover {
+  background-color: #4ec54b;
+  box-shadow: 0 0 12px #4ec54b;
+  border-color: #fff;
+}
+.tipo-circulo.fire:hover {
+  background-color: #ff5a5a;
+  box-shadow: 0 0 12px #ff5a5a;
+  border-color: #fff;
+}
+.tipo-circulo.water:hover {
+  background-color: #5a9fff;
+  box-shadow: 0 0 12px #5a9fff;
+  border-color: #fff;
+}
+.tipo-circulo.electric:hover {
+  background-color: #fbd200;
+  box-shadow: 0 0 12px #fbd200;
+  border-color: #fff;
+}
+.tipo-circulo.poison:hover {
+  background-color: #a040a0;
+  box-shadow: 0 0 12px #a040a0;
+  border-color: #fff;
+}
+.tipo-circulo.bug:hover {
+  background-color: #91a119;
+  box-shadow: 0 0 12px #91a119;
+  border-color: #fff;
+}
+.tipo-circulo.ground:hover {
+  background-color: #e0c068;
+  box-shadow: 0 0 12px #e0c068;
+  border-color: #fff;
+}
+.tipo-circulo.fairy:hover {
+  background-color: #ee99ac;
+  box-shadow: 0 0 12px #ee99ac;
+  border-color: #fff;
+}
+.tipo-circulo.flying:hover {
+  background-color: #a98ff3;
+  box-shadow: 0 0 15px #a98ff3;
+  border-color: #fff;
+}
+.tipo-circulo.normal:hover {
+  background-color: #a8a77a;
+  box-shadow: 0 0 15px #a8a77a;
+  border-color: #fff;
+}
+.tipo-circulo.fighting:hover {
+  background-color: #c22e28;
+  box-shadow: 0 0 15px #c22e28;
+  border-color: #fff;
+}
+.tipo-circulo.psychic:hover {
+  background-color: #f95587;
+  box-shadow: 0 0 15px #f95587;
+  border-color: #fff;
+}
+.tipo-circulo.all:hover {
+  background-color: #333;
+  border-color: white;
+}
 
 /* Cores das Tags (Pílulas de tipo) */
-.tag.grass { background-color: #4ec54b; color: #fff; }
-.tag.poison { background-color: #a040a0; color: #fff; }
-.tag.fire { background-color: #ff5a5a; color: #fff; }
-.tag.water { background-color: #5a9fff; color: #fff; }
-.tag.bug { background-color: #91a119; color: #fff; }
-.tag.normal { background-color: #a8a878; color: #fff; }
-.tag.electric { background-color: #fbd200; color: #000; } /* Elétrico geralmente usa letra preta por ser claro */
-.tag.ground { background-color: #e0c068; color: #fff; }
-.tag.fairy { background-color: #ee99ac; color: #fff; }
-.tag.fighting { background-color: #c03028; color: #fff; }
-.tag.psychic { background-color: #f85888; color: #fff; }
-.tag.rock { background-color: #b8a038; color: #fff; }
-.tag.ghost { background-color: #705898; color: #fff; }
-.tag.ice { background-color: #98d8d8; color: #000; }
-.tag.dragon { background-color: #7038f8; color: #fff; }
-.tag.flying { background-color: #A98FF3; color: #fff; }
+.tag.grass {
+  background-color: #4ec54b;
+  color: #fff;
+}
+.tag.poison {
+  background-color: #a040a0;
+  color: #fff;
+}
+.tag.fire {
+  background-color: #ff5a5a;
+  color: #fff;
+}
+.tag.water {
+  background-color: #5a9fff;
+  color: #fff;
+}
+.tag.bug {
+  background-color: #91a119;
+  color: #fff;
+}
+.tag.normal {
+  background-color: #a8a878;
+  color: #fff;
+}
+.tag.electric {
+  background-color: #fbd200;
+  color: #000;
+} /* Elétrico geralmente usa letra preta por ser claro */
+.tag.ground {
+  background-color: #e0c068;
+  color: #fff;
+}
+.tag.fairy {
+  background-color: #ee99ac;
+  color: #fff;
+}
+.tag.fighting {
+  background-color: #c03028;
+  color: #fff;
+}
+.tag.psychic {
+  background-color: #f85888;
+  color: #fff;
+}
+.tag.rock {
+  background-color: #b8a038;
+  color: #fff;
+}
+.tag.ghost {
+  background-color: #705898;
+  color: #fff;
+}
+.tag.ice {
+  background-color: #98d8d8;
+  color: #000;
+}
+.tag.dragon {
+  background-color: #7038f8;
+  color: #fff;
+}
+.tag.flying {
+  background-color: #a98ff3;
+  color: #fff;
+}
 
 /* --- ILUMINAÇÃO DINÂMICA DOS CARDS --- */
 
 /* Grama e Veneno (Já que o Bulbasaur tem os dois) */
-.card-pokemon.grass { border-bottom-color: #4ec54b; --tipo-cor: rgba(78, 197, 75, 0.4); }
-.card-pokemon.poison { border-bottom-color: #a040a0; --tipo-cor: rgba(160, 64, 160, 0.4); }
+.card-pokemon.grass {
+  border-bottom-color: #4ec54b;
+  --tipo-cor: rgba(78, 197, 75, 0.4);
+}
+.card-pokemon.poison {
+  border-bottom-color: #a040a0;
+  --tipo-cor: rgba(160, 64, 160, 0.4);
+}
 
 /* Fogo, Água e Elétrico */
-.card-pokemon.fire { border-bottom-color: #ff5a5a; --tipo-cor: rgba(255, 90, 90, 0.4); }
-.card-pokemon.water { border-bottom-color: #5a9fff; --tipo-cor: rgba(90, 159, 255, 0.4); }
-.card-pokemon.electric { border-bottom-color: #fbd200; --tipo-cor: rgba(251, 210, 0, 0.4); }
+.card-pokemon.fire {
+  border-bottom-color: #ff5a5a;
+  --tipo-cor: rgba(255, 90, 90, 0.4);
+}
+.card-pokemon.water {
+  border-bottom-color: #5a9fff;
+  --tipo-cor: rgba(90, 159, 255, 0.4);
+}
+.card-pokemon.electric {
+  border-bottom-color: #fbd200;
+  --tipo-cor: rgba(251, 210, 0, 0.4);
+}
 
 /* Inseto, Voador e Normal */
-.card-pokemon.bug { border-bottom-color: #91a119; --tipo-cor: rgba(145, 161, 25, 0.4); }
-.card-pokemon.flying { border-bottom-color: #a890f0; --tipo-cor: rgba(168, 144, 240, 0.4); }
-.card-pokemon.normal { border-bottom-color: #a8a878; --tipo-cor: rgba(168, 168, 120, 0.4); }
+.card-pokemon.bug {
+  border-bottom-color: #91a119;
+  --tipo-cor: rgba(145, 161, 25, 0.4);
+}
+.card-pokemon.flying {
+  border-bottom-color: #a890f0;
+  --tipo-cor: rgba(168, 144, 240, 0.4);
+}
+.card-pokemon.normal {
+  border-bottom-color: #a8a878;
+  --tipo-cor: rgba(168, 168, 120, 0.4);
+}
 
 /* Chão, Pedra e Gelo */
-.card-pokemon.ground { border-bottom-color: #e0c068; --tipo-cor: rgba(224, 192, 104, 0.4); }
-.card-pokemon.rock { border-bottom-color: #b8a038; --tipo-cor: rgba(184, 160, 56, 0.4); }
-.card-pokemon.ice { border-bottom-color: #98d8d8; --tipo-cor: rgba(152, 216, 216, 0.4); }
+.card-pokemon.ground {
+  border-bottom-color: #e0c068;
+  --tipo-cor: rgba(224, 192, 104, 0.4);
+}
+.card-pokemon.rock {
+  border-bottom-color: #b8a038;
+  --tipo-cor: rgba(184, 160, 56, 0.4);
+}
+.card-pokemon.ice {
+  border-bottom-color: #98d8d8;
+  --tipo-cor: rgba(152, 216, 216, 0.4);
+}
 
 /* Psíquico, Lutador e Fada */
-.card-pokemon.psychic { border-bottom-color: #f85888; --tipo-cor: rgba(248, 88, 136, 0.4); }
-.card-pokemon.fighting { border-bottom-color: #c03028; --tipo-cor: rgba(192, 48, 40, 0.4); }
-.card-pokemon.fairy { border-bottom-color: #ee99ac; --tipo-cor: rgba(238, 153, 172, 0.4); }
+.card-pokemon.psychic {
+  border-bottom-color: #f85888;
+  --tipo-cor: rgba(248, 88, 136, 0.4);
+}
+.card-pokemon.fighting {
+  border-bottom-color: #c03028;
+  --tipo-cor: rgba(192, 48, 40, 0.4);
+}
+.card-pokemon.fairy {
+  border-bottom-color: #ee99ac;
+  --tipo-cor: rgba(238, 153, 172, 0.4);
+}
 
 /* Fantasma, Dragão e Aço */
-.card-pokemon.ghost { border-bottom-color: #705898; --tipo-cor: rgba(112, 88, 152, 0.4); }
-.card-pokemon.dragon { border-bottom-color: #7038f8; --tipo-cor: rgba(112, 56, 248, 0.4); }
-.card-pokemon.steel { border-bottom-color: #b8b8d0; --tipo-cor: rgba(184, 184, 208, 0.4); }
+.card-pokemon.ghost {
+  border-bottom-color: #705898;
+  --tipo-cor: rgba(112, 88, 152, 0.4);
+}
+.card-pokemon.dragon {
+  border-bottom-color: #7038f8;
+  --tipo-cor: rgba(112, 56, 248, 0.4);
+}
+.card-pokemon.steel {
+  border-bottom-color: #b8b8d0;
+  --tipo-cor: rgba(184, 184, 208, 0.4);
+}
 
+/* O fundo escuro que você já está vendo */
+.modal-teste {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85); /* Escurece o fundo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Garante que fica na frente de tudo */
+}
+
+/* Estilo da caixa principal inspirado no mobile */
+.modal-caixa {
+  width: 90%;
+  max-width: 400px;
+  border-radius: 30px;
+  position: relative;
+  padding: 20px; /* aqui */
+  color: white;
+  overflow: hidden;
+}
+
+/* Cores de fundo dinâmicas (exemplo para Grass) */
+.modal-caixa.grass {
+  background-color: #4ec54b;
+  color: #fff;
+}
+.modal-caixa.poison {
+  background-color: #a040a0;
+  color: #fff;
+}
+.modal-caixa.fire {
+  background-color: #ff5a5a;
+  color: #fff;
+}
+.modal-caixa.water {
+  background-color: #5a9fff;
+  color: #fff;
+}
+.modal-caixa.bug {
+  background-color: #91a119;
+  color: #fff;
+}
+.modal-caixa.normal {
+  background-color: #a8a878;
+  color: #fff;
+}
+.modal-caixa.electric {
+  background-color: #fbd200;
+  color: #000;
+} /* Elétrico geralmente usa letra preta por ser claro */
+.modal-caixa.ground {
+  background-color: #e0c068;
+  color: #fff;
+}
+.modal-caixa.fairy {
+  background-color: #ee99ac;
+  color: #fff;
+}
+.modal-caixa.fighting {
+  background-color: #c03028;
+  color: #fff;
+}
+.modal-caixa.psychic {
+  background-color: #f85888;
+  color: #fff;
+}
+.modal-caixa.rock {
+  background-color: #b8a038;
+  color: #fff;
+}
+.modal-caixa.ghost {
+  background-color: #705898;
+  color: #fff;
+}
+.modal-caixa.ice {
+  background-color: #98d8d8;
+  color: #000;
+}
+.modal-caixa.dragon {
+  background-color: #7038f8;
+  color: #fff;
+}
+.modal-caixa.flying {
+  background-color: #a98ff3;
+  color: #fff;
+}
+
+.modal-header-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.btn-voltar {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.modal-id {
+  font-weight: bold;
+  font-size: 18px;
+  opacity: 0.8;
+}
+
+.modal-nome {
+  letter-spacing: -1px; /* Deixa o nome mais imponente */
+  font-weight: 800;
+
+  text-transform: capitalize;
+  font-size: 32px;
+  margin: 0;
+}
+
+.modal-tipos {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.tag-modal {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+.modal-imagem-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  position: relative;
+  z-index: 5;
+  margin-bottom: -40px;
+}
+
+.modal-img-poke {
+  width: 180px;
+  height: 180px;
+  filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.2));
+}
+
+/* A div branca que sobe */
+.modal-detalhes-branco {
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      rgba(255, 255, 255, 0.01) 0%,
+      transparent 70%
+    ),
+    linear-gradient(180deg, #0a0c10 0%, #1c1f24 100%);
+
+  color: #ffffff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  border-top-left-radius: 35px;
+  border-top-right-radius: 35px;
+  border-bottom-left-radius: 35px;
+  border-bottom-right-radius: 35px;
+  padding: 50px 30px 400px 30px;
+  min-height: 300px;
+  z-index: 1;
+  color: #333;
+  height: 380px;
+}
+
+
+/* Navegação (About, Stats...) */
+.modal-nav {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Linha de fundo sutil */
+  margin-bottom: 20px;
+  padding-bottom: 0; /* Removemos o padding para a linha encostar */
+  position: relative;
+}
+
+.modal-nav span {
+  font-size: 14px;
+  color: #888;
+  font-weight: bold;
+  cursor: pointer;
+  padding-bottom: 10px;
+  position: relative;
+  transition: color 0.3s ease; /* Suaviza a troca da cor do texto */
+}
+
+.modal-nav span.active {
+  color: #ffffff;
+}
+
+/* A "mágica" da linha suave */
+.modal-nav span::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0; /* Começa com largura zero */
+  height: 2px;
+  background-color: #6c79db; /* Cor da linha (pode usar a do tipo do pokemon) */
+  transition: width 0.3s ease; /* Faz a linha "crescer" */
+}
+
+.modal-nav span.active::after {
+  width: 100%; /* Quando ativo, a linha ocupa todo o espaço */
+}
+
+/* Linha de status limpas */
+.stat-row-clean {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+
+/* Rótulos (Gender, Egg Groups, etc) */
+.label-cinza {
+  color: #888888;
+  width: 120px;
+  font-weight: 500;
+}
+
+/* Valores (Monster, Grass...) */
+.valor-preto {
+  color: #ffffff;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+/* Título da Seção (Breeding) */
+.breeding-section {
+  margin-top: 30px;
+  animation: fadeIn 0.4s ease; /* Efeito suave ao aparecer */
+}
+
+.section-title-small {
+  font-size: 16px;
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Alinhamento das Linhas */
+.stat-row-clean {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+  font-size: 14px;
+}
+
+/* Estilo dos Gêneros */
+.gender-values {
+  display: flex;
+  gap: 20px;
+}
+
+.male {
+  color: #6c79db; /* Azul característico */
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.female {
+  color: #f0729f; /* Rosa característico */
+  display: felx;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Animação simples para quando abrir o modal */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* Nome e Tipos vindo da esquerda */
+@keyframes slideEsquerda {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* ID vindo da direita */
+@keyframes slideDireita {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Aplicando nos elementos */
+.modal-info-principal {
+  animation: slideEsquerda 0.5s ease-out;
+}
+
+.modal-id {
+  animation: slideDireita 0.5s ease-out;
+}
+
+/* O conteúdo do About igual ao Breeding */
+.modal-stats-list {
+  
+  animation: fadeIn 0.4s ease; /* Usando aquele que já criamos para o Breeding */
+}
+
+.stat-row-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.label-cinza-stats {
+  color: #888;
+  width: 80px;
+  text-transform: capitalize;
+  font-size: 14px;
+}
+
+.valor-status {
+  width: 35px;
+  font-weight: bold;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.bar-container {
+  flex: 1;
+  background-color: #333; /* Fundo da barra */
+  height: 6px;
+  border-radius: 10px;
+  margin-left: 10px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.8s ease-in-out;
+}
+
+/* Cores das barras baseado na força */
+.bar-fill.low { background-color: #fb6c6c; }    /* Vermelho */
+.bar-fill.high { background-color: #48d0b0; }   /* Verde */
+.bar-fill.total { background-color: #48d0b0; }
+
+.animate-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Container que segura o título e as tags */
+.type-defenses-container {
+  width: 100%;
+  margin-top: 15px;
+  box-sizing: border-box; /* Garante que o padding não estique o elemento */
+}
+
+/* A Grid onde ficam as tags de tipo */
+.tags-defesas-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Mantém duas colunas */
+  gap: 10px;
+  
+  /* --- TRAVA DE SEGURANÇA --- */
+  max-height: 150px;       /* Limita a altura para caber na caixinha branca */
+  overflow-y: auto;        /* Cria o scroll apenas nesta área se necessário */
+  padding-right: 5px;      /* Espaço para a barra de scroll não amassar as tags */
+  height: 100px;
+}
+
+/* Estilização opcional para o scroll ficar discreto */
+.tags-defesas-grid::-webkit-scrollbar {
+  width: 4px;
+}
+.tags-defesas-grid::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+/* O item individual (ex: FLYING 2x) */
+.defesa-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Nome na esquerda, número na direita */
+  background: rgba(255, 255, 255, 0.08); /* Fundo sutil */
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Ajuste das tags de tipo */
+.tag-tipo-fixa {
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 5px;
+  min-width: 70px; /* Garante que todas tenham o mesmo tamanho */
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* O texto do multiplicador (2x, 1/2x) */
+.multiplicador {
+  font-size: 13px;
+  font-weight: bold;
+  color: #fff;
+  opacity: 0.9;
+}
+
+/* --- CORES DOS TIPOS (Garanta que estas classes existam) --- */
+.fire { background-color: #ff421c; }
+.water { background-color: #6390f0; }
+.grass { background-color: #78c850; }
+.poison { background-color: #a040a0; }
+.flying { background-color: #a890f0; }
+.bug { background-color: #a8b820; }
+.electric { background-color: #f8d030; color: #000; }
+.ground { background-color: #e0c068; }
+.fairy { background-color: #ee99ac; }
+.fighting { background-color: #c03028; }
+.psychic { background-color: #f85888; }
+.rock { background-color: #b8a038; }
+.steel { background-color: #b8b8d0; }
+.ice { background-color: #98d8d8; }
+.ghost { background-color: #705898; }
+.dragon { background-color: #7038f8; }
+.dark { background-color: #705848; }
+.normal { background-color: #a8a878; }
