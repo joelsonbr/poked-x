@@ -1206,3 +1206,20 @@
 .defesa-item.resistance {
   border-left: 3px solid #78c850; /* Verde para resistência */
 }
+
+.destaque-tipos {
+  display: flex;      /* Faz os itens virarem blocos flexíveis */
+  gap: 10px;          /* ISSO aqui é o que vai separar o grass do poison */
+  margin-top: 15px;   /* Só pra dar um respiro em relação ao nome */
+  margin-bottom: 10px;
+}
+
+/* E ajuste a tag-tipo para ela não ficar "magrinha" */
+.tag-tipo {
+  padding: 5px 15px;  /* Dá espaço interno nas laterais */
+  border-radius: 20px; /* Deixa redondinho estilo pílula */
+  font-weight: bold;
+  color: white;
+  text-transform: capitalize;
+  font-size: 14px;
+}
