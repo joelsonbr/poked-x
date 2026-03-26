@@ -425,7 +425,7 @@ function App() {
                       <div className="bar-container">
                         <div
                           className={`bar-fill ${s.base_stat >= 50 ? "high" : "low"}`}
-                          style={{ width: `${(s.base_stat / 255) * 100}%` }}
+                          style={{ width: `${(s.base_stat / 150) * 100}%` }} /* aquii a barra */
                         ></div>
                       </div>
                     </div>

@@ -72,6 +72,7 @@
   gap: 10px;
   font-size: 22px;
   margin: 15px 0;
+  color: white;
 }
 
 .poke-nome::before,
@@ -868,7 +869,6 @@
   height: 510px;
 }
 
-
 /* Navegação (About, Stats...) */
 .modal-nav {
   display: flex;
@@ -973,19 +973,37 @@
 
 /* Animação simples para quando abrir o modal */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 /* Nome e Tipos vindo da esquerda */
 @keyframes slideEsquerda {
-  from { opacity: 0; transform: translateX(-50px); }
-  to { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* ID vindo da direita */
 @keyframes slideDireita {
-  from { opacity: 0; transform: translateX(50px); }
-  to { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* Aplicando nos elementos */
@@ -999,7 +1017,6 @@
 
 /* O conteúdo do About igual ao Breeding */
 .modal-stats-list {
-  
   animation: fadeIn 0.4s ease; /* Usando aquele que já criamos para o Breeding */
 }
 
@@ -1141,9 +1158,12 @@
   background: rgba(255, 255, 255, 0.08);
 }
 
-.defesa-item.weakness { border-left-color: #ff421c; }
-.defesa-item.resistance { border-left-color: #48d0b0; }
-
+.defesa-item.weakness {
+  border-left-color: #ff421c;
+}
+.defesa-item.resistance {
+  border-left-color: #48d0b0;
+}
 
 /* Ajuste das tags de tipo */
 .tag-tipo-fixa {
@@ -1155,36 +1175,73 @@
   border-radius: 5px;
   min-width: 70px; /* Garante que todas tenham o mesmo tamanho */
   text-align: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* O texto do multiplicador (2x, 1/2x) */
 .multiplicador {
-  font-weight: 800;
-  font-size: 12px;
-  color: #fff;
-  opacity: 0.9;
-}
+    font-size: 0.75rem !important;
+    font-weight: bold;
+    color: white;
+    margin: 0 !important;
+  }
 
 /* --- CORES DOS TIPOS (Garanta que estas classes existam) --- */
-.fire { background-color: #ff421c; }
-.water { background-color: #6390f0; }
-.grass { background-color: #78c850; }
-.poison { background-color: #a040a0; }
-.flying { background-color: #a890f0; }
-.bug { background-color: #a8b820; }
-.electric { background-color: #f8d030; color: #000; }
-.ground { background-color: #e0c068; }
-.fairy { background-color: #ee99ac; }
-.fighting { background-color: #c03028; }
-.psychic { background-color: #f85888; }
-.rock { background-color: #b8a038; }
-.steel { background-color: #b8b8d0; }
-.ice { background-color: #98d8d8; }
-.ghost { background-color: #705898; }
-.dragon { background-color: #7038f8; }
-.dark { background-color: #705848; }
-.normal { background-color: #a8a878; }
+.fire {
+  background-color: #ff421c;
+}
+.water {
+  background-color: #6390f0;
+}
+.grass {
+  background-color: #78c850;
+}
+.poison {
+  background-color: #a040a0;
+}
+.flying {
+  background-color: #a890f0;
+}
+.bug {
+  background-color: #a8b820;
+}
+.electric {
+  background-color: #f8d030;
+  color: #000;
+}
+.ground {
+  background-color: #e0c068;
+}
+.fairy {
+  background-color: #ee99ac;
+}
+.fighting {
+  background-color: #c03028;
+}
+.psychic {
+  background-color: #f85888;
+}
+.rock {
+  background-color: #b8a038;
+}
+.steel {
+  background-color: #b8b8d0;
+}
+.ice {
+  background-color: #98d8d8;
+}
+.ghost {
+  background-color: #705898;
+}
+.dragon {
+  background-color: #7038f8;
+}
+.dark {
+  background-color: #705848;
+}
+.normal {
+  background-color: #a8a878;
+}
 
 .defesa-subtitulo {
   grid-column: 1 / -1; /* Faz o título ocupar as duas colunas */
@@ -1208,18 +1265,348 @@
 }
 
 .destaque-tipos {
-  display: flex;      /* Faz os itens virarem blocos flexíveis */
-  gap: 10px;          /* ISSO aqui é o que vai separar o grass do poison */
-  margin-top: 15px;   /* Só pra dar um respiro em relação ao nome */
+  display: flex; /* Faz os itens virarem blocos flexíveis */
+  gap: 10px; /* ISSO aqui é o que vai separar o grass do poison */
+  margin-top: 15px; /* Só pra dar um respiro em relação ao nome */
   margin-bottom: 10px;
 }
 
 /* E ajuste a tag-tipo para ela não ficar "magrinha" */
 .tag-tipo {
-  padding: 5px 15px;  /* Dá espaço interno nas laterais */
+  padding: 5px 15px; /* Dá espaço interno nas laterais */
   border-radius: 20px; /* Deixa redondinho estilo pílula */
   font-weight: bold;
   color: white;
   text-transform: capitalize;
   font-size: 14px;
+}
+
+/* LAYOUT PARA MOBILE */
+
+/* --- AJUSTES PARA CELULAR (SAMSUNG A24 E OUTROS) --- */
+@media (max-width: 576px) {
+  .destaque-conteudo {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    text-align: center !important;
+    padding: 20px !important;
+    gap: 10px !important;
+  }
+
+  .destaque-informacoes {
+    display: contents !important;
+  }
+
+  .logo-topo {
+    order: 1 !important;
+    margin: 0 auto 10px !important;
+  }
+  .destaque-imagem-bloco {
+    order: 2 !important;
+    margin: 0 auto !important;
+  }
+  .nome-destaque {
+    order: 3 !important;
+    font-size: 2.2rem !important;
+    width: 100% !important;
+    margin: 5px 0 !important;
+  }
+  .destaque-tipos {
+    order: 4 !important;
+    display: flex !important;
+    justify-content: center !important;
+    gap: 8px !important;
+  }
+  .descricao-destaque {
+    order: 5 !important;
+    font-size: 0.95rem !important;
+    margin: 10px 0 !important;
+  }
+  .btn-principal {
+    order: 6 !important;
+    width: 90% !important;
+    margin: 15px auto !important;
+  }
+  .redes-sociais {
+    order: 7 !important;
+    display: flex !important;
+    justify-content: center !important;
+    gap: 25px !important;
+  }
+
+  .poke-image-grande {
+    max-width: 220px !important;
+    height: auto !important;
+  }
+
+  .busca-bloco {
+    width: 90% !important;
+    order: 1 !important; /* Busca primeiro */
+  }
+
+  .busca-bloco h2 {
+    font-size: 1.2rem !important;
+    margin-bottom: 10px !important;
+    text-align: left !important;
+  }
+
+  .barra-background-escura {
+    width: 100% !important;
+    order: 2 !important; /* Elementos depois */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .pokedex-header {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 15px 5px !important;
+    gap: 20px !important;
+    width: 100% !important;
+  }
+
+  .busca-bloco {
+    width: 100% !important;
+    padding: 0 10px !important;
+  }
+
+  .barra-background-escura.barra-scroll {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    width: 100% !important;
+    padding: 15px 5px !important;
+    gap: 12px !important;
+    justify-content: flex-start !important;
+
+    /* Remove a barra de scroll visual para ficar limpo */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .barra-background-escura.barra-scroll::-webkit-scrollbar {
+    display: none; /* Esconde no Chrome/Samsung */
+  }
+
+  .tipo-circulo {
+    flex: 0 0 auto !important; /* impede que o circulo seja "esmmagado" */
+    width: 45px !important;
+    height: 45px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .input-wrapper input {
+    height: 45px !important;
+    line-height: 45px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    vertical-align: middle !important;
+  }
+
+  .input-wrapper input::placeholder {
+    line-height: 45px !important;
+    vertical-align: middle !important;
+  }
+  /* AUQ!I COMESA A MMEXER COM CARD DE POKEMON */
+  .pokemon-grid {
+    display: grid !important;
+    /* Aqui a mágica: ele tenta colocar 2 colunas, mas cada uma tem no máximo 160px */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 165px)) !important;
+    justify-content: center !important; /* Centraliza o bloco de cards no meio do celular */
+    gap: 10px !important;
+    padding: 10px !important;
+    width: 100% !important;
+  }
+
+  /* 2. O Card: Forçamos ele a ser menor */
+  .card-pokemon {
+    width: 100% !important;
+    max-width: 165px !important; /* Limita a largura para ele não crescer demais */
+    padding: 10px !important;
+    margin: 0 auto !important;
+    height: auto !important;
+  }
+
+  /* 3. Encolhendo a Imagem para caber no card menor */
+  .poke-imagem {
+    width: 80px !important;
+    height: 80px !important;
+    margin: 0 auto 5px !important;
+  }
+
+  /* 4. Ajustando os textos internos que devem estar gigantes */
+  .poke-nome {
+    font-size: 0.95rem !important;
+    margin-bottom: 4px !important;
+  }
+
+  .poke-stats {
+    font-size: 0.7rem !important; /* Deixa o peso/altura miúdo pra caber */
+    gap: 5px !important;
+  }
+
+  .poke-tipos {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: row !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    width: 100% !important;
+    margin: 10px 0 !important;
+  }
+
+  .tag {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    font-size: 0.6rem !important;
+    letter-spacing: -0.5px !important;
+
+    width: 65px !important;
+    height: 22px !important;
+
+    padding: 0 !important;
+    text-align: center !important;
+  }
+
+  .tag span,
+  .tag p {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .btn-detalhes {
+    display: flex !important;
+    flex-direction: row !important; /* Garante que ícone e texto fiquem lado a lado */
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 100% !important;
+    padding: 8px 4px !important; /* Padding lateral menor pra sobrar espaço pro texto */
+    height: 38px !important; /* Altura fixa pra ficar padronizado */
+
+    font-size: 0.75rem !important; /* Letra um pouco menor pra caber tudo */
+    white-space: nowrap !important; /* A MÁGICA: Proíbe o texto de quebrar linha */
+    gap: 5px !important; /* Diminui o espaço entre o raio e o texto */
+  }
+
+  /* Se você usa um ícone (SVG ou Lucide) dentro do botão */
+  .btn-detalhes svg {
+    width: 14px !important;
+    height: 14px !important;
+    flex-shrink: 0 !important; /* Impede o ícone de ser esmagado */
+  }
+
+  /* janela sobre pokemon */
+  .modal-teste {
+    padding: 0 !important;
+    align-items: flex-start !important;
+  }
+
+  .modal-caixa {
+    display: flex !important;
+    flex-direction: column !important;
+    padding-top: 10px;
+    width: 100vw !important;
+    height: 100vh !important;
+    overflow-y: auto !important; /* Permite deslizar para baixo */
+    display: block !important; /* Muda para block para o scroll ser mais natural */
+    border-radius: 0 !important;
+  }
+
+  .modal-header-topo {
+    padding: 25px 20px 10px 20px !important;
+  }
+
+  .modal-imagem-container {
+    height: 200px !important;
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+  }
+
+.modal-detalhes-branco {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important; /* Deixa o conteúdo ditar a altura */
+    min-height: fit-content !important; /* Ocupa só o que precisar */
+    padding: 30px 20px 20px 20px !important;
+    overflow: visible !important; /* Garante que nada fique preso */
+    background-color: #1a1c21; /* Cor de fundo conforme sua imagem */
+  }
+
+  /* Ajuste das barras de status para caber o texto e a barra */
+  .stat-row-bar {
+    display: grid !important;
+    grid-template-columns: 80px 35px 1fr !important; /* Larguras fixas para rótulo e valor */
+    gap: 10px !important;
+    align-items: center !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* 4. Ajuste da Tag de tipo dentro da defesa */
+  .tag-tipo-fixa {
+    display: inline-block !important;
+    width: auto !important; /* LARGURA AUTOMÁTICA */
+    font-size: 0.65rem !important; /* Fonte menor pra caber no card justo */
+    letter-spacing: -0.5px;
+    padding: 3px 6px !important; /* Padding mínimo na tag */
+    border-radius: 4px !important;
+    text-align: center;
+    margin-right: 6px !important; /* Espaço justo pro 2x */
+  }
+
+  /* --- AJUSTE DAS DEFESAS --- */
+
+  /* 1. O container pai deve ser uma coluna para o título ficar no topo sozinho */
+.type-defenses-container {
+    display: block !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important; /* MATAMOS O SCROLL AQUI */
+    width: 100% !important;
+  }
+
+  /* 2. Apenas a grid de tags terá as 2 colunas que você quer */
+.tags-defesas-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+    height: auto !important;
+    overflow: visible !important; /* Sem travas aqui também */
+  }
+
+  /* 3. O item individual (o card) */
+  .defesa-item {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important; /* Conteúdo grudadinho */
+
+    /* REMOVE TRAVAS DE TAMANHO */
+    width: auto !important;
+    height: auto !important;
+
+    /* AJUSTA O ESPAÇO INTERNO */
+    padding: 6px 10px !important; /* Padding pequeno pro card ficar justo */
+    border-radius: 8px !important;
+    box-sizing: border-box !important;
+
+    /* Estilo visual leve */
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 3px solid transparent; /* Reserva espaço pra bordinha se você usar */
+  }
+
+  /* 4. Legenda (Weakness/Resistance) */
+  .legenda-defesa {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 15px !important;
+    margin-bottom: 10px !important;
+    font-size: 0.7rem !important;
+    width: 100% !important;
+  }
 }
