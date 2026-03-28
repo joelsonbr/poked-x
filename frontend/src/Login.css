@@ -1,0 +1,349 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.login-screen {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("https://i.pinimg.com/1200x/e9/49/5f/e9495f4e79f1283c6af7fef9f6e953cb.jpg")
+    no-repeat center center/cover;
+  overflow: hidden;
+}
+
+.login-box {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(15px);
+  padding: 40px;
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  width: 95%;
+  max-width: 520px;
+  text-align: center;
+  color: white;
+
+  text-align: center;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+/* --- HEADER & POKEBOLA --- */
+.login-header img {
+  width: 60px;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+  animation: floatPoke 2s ease-in-out infinite;
+  will-change: transform;
+}
+
+.login-header h2 {
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-header p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8) !important;
+  margin-bottom: 30px;
+}
+
+/* --- FORMULARIO --- */
+.login-input-group {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.login-input-group label {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  color: #816cac;
+  font-weight: 600;
+}
+
+.login-input {
+  all: unset !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  padding: 12px 15px !important;
+  background: rgba(0, 0, 0, 0.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 10px !important;
+  color: white !important;
+  transition: 0.3s ease-in-out !important;
+}
+
+.login-input:focus {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-color: #816cac !important;
+  box-shadow: 0 0 12px rgba(129, 108, 172, 0.6) !important;
+}
+
+.login-input::placeholder {
+  color: rgba(255, 255, 255, 0.4) !important;
+  opacity: 1; /* Firefox fix */
+}
+
+/* --- BOTÃO --- */
+.btn-login {
+  width: 100%;
+  padding: 15px;
+  background: #816cac;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-login:hover {
+  background: #6d5899;
+  transform: translateY(-2px);
+  animation: pulse-purple 1.5s infinite;
+}
+
+/* --- FOOTER --- */
+.login-footer {
+  margin-top: 25px;
+}
+
+.login-footer p {
+  font-size: 0.85rem;
+  color: white !important;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.link-cadastro {
+  color: #816cac;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.link-cadastro:hover {
+  color: #a892d1;
+  text-shadow: 0 0 8px rgba(129, 108, 172, 0.8);
+}
+
+/* --- LUCIDE.DEV - ICONE --- */
+.error-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(255, 75, 43, 0.1);
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border: 1px solid rgba(255, 75, 43, 0.2);
+  animation: fadeIn 0.3s ease;
+}
+
+.error-message {
+  margin: 0 !important;
+  background: none !important;
+  padding: 0 !important;
+}
+
+/* Ajuste do botão do olho */
+.password-toggle {
+  all: unset;
+  background: none;
+  border: none;
+  color: #816cac;
+  position: absolute;
+  right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.6;
+  transition: 0.3s;
+  z-index: 2;
+}
+
+.password-toggle:hover {
+  opacity: 1;
+  transform: scale(1.1);
+  color: #a892d1;
+}
+
+/* Ícones decorativos no lado esquerdo do input */
+.input-icon-left {
+  position: absolute; /* ESSENCIAL: Faz o ícone flutuar */
+  left: 15px; /* Alinha no canto esquerdo de dentro do input */
+  color: #816cac; /* Roxo do tema */
+  opacity: 0.6; /* Leve transparência pra não brigar com o texto */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none; /* Garante que o clique passe direto pro input */
+  z-index: 2; /* Garante que o ícone fique por cima do fundo do input */
+}
+
+/* 3. O input que vem LOGO DEPOIS de um ícone à esquerda */
+.input-icon-left + .login-input {
+  /* ESSENCIAL: Dá espaço na esquerda pra o placeholder/texto não bater no ícone */
+  padding-left: 45px !important;
+  padding-right: 15px !important; /* Padding normal na direita */
+  box-sizing: border-box !important;
+}
+/* 1. O container do input de senha */
+.password-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+/* 2. O input de senha em si */
+.password-wrapper .login-input {
+  width: 100% !important;
+  padding-right: 45px !important;
+  box-sizing: border-box !important;
+}
+
+/* Alinhamento do ícone dentro do botão principal */
+.btn-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-with-icon-outside {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.sidebar-icon {
+  color: #816cac;
+  flex-shrink: 0;
+}
+
+.input-with-icon-outside .login-input,
+.input-with-icon-outside .password-wrapper {
+  flex: 1;
+}
+
+.input-error-pulse {
+  border-color: #ff4b2b !important;
+  animation:
+    shake 0.4s ease-in-out,
+    pulse-red 1.5s infinite !important;
+  background: rgba(255, 75, 43, 0.05) !important;
+}
+
+/* --- ANIMATION E ERROS --- */
+@keyframes floatPoke {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-6px);
+  }
+  50% {
+    transform: translateX(6px);
+  }
+  75% {
+    transform: translateX(-6px);
+  }
+}
+
+@keyframes pulse-purple {
+  0% {
+    box-shadow: 0 0 0 0 rgba(129, 108, 172, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(129, 108, 172, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(129, 108, 172, 0);
+  }
+}
+
+/* Ajuste para o preenchimento automático do Chrome não ficar amarelo */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0.8) inset !important;
+  -webkit-text-fill-color: white !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+@keyframes pulse-red {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 75, 43, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 75, 43, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 75, 43, 0);
+  }
+}
+
+/* --- RESPONSIVIDADE (MOBILE) --- */
+
+@media (max-width: 480px) {
+  /* 1. Diminuir o padding da caixa para ganhar espaço */
+  .login-box {
+    padding: 25px 20px;
+    width: 90%;
+    border-radius: 20px;
+  }
+
+  /* 2. Diminuir um pouco o título e a imagem */
+  .login-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .login-header img {
+    width: 50px;
+  }
+
+  /* 3. Ajustar ícones externos para não roubarem muito espaço */
+  .input-with-icon-outside {
+    gap: 8px; /* Diminui o espaço entre o ícone e o input */
+  }
+
+  .sidebar-icon {
+    width: 20px; /* Ícones um pouco menores no celular */
+  }
+
+  .btn-login {
+    padding: 14px;
+    font-size: 0.9rem;
+  }
+
+  /* 5. Ajustar o rodapé */
+  .login-footer p {
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column; /* Coloca o link embaixo do texto se não couber */
+    gap: 5px;
+  }
+}

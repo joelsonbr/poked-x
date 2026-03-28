@@ -1,0 +1,13 @@
+# 🔐 SEGREDOS (O mais importante!)
+.env
+.env.local
+
+# 📦 PASTAS PESADAS (O 'npm install' cria elas de novo)
+node_modules/
+dist/
+build/
+
+# 🛠️ CONFIGURAÇÕES DE EDITOR/SISTEMA
+.vscode/
+.DS_Store
+thumbs.db
