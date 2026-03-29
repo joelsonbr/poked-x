@@ -309,6 +309,33 @@ input:-webkit-autofill {
 /* --- RESPONSIVIDADE (MOBILE) --- */
 
 @media (max-width: 480px) {
+  .login-screen {
+    background: url("https://i.pinimg.com/736x/71/5f/d5/715fd5eb8eaccdc8aec8f2527f4cbd40.jpg");
+    background-size: 120%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  label,
+  .link-cadastro {
+    color: #e20f07 !important;
+  }
+  .login-box {
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(5px);
+  }
+  .lucide {
+    color: #e20f07;
+  }
+  .btn-login {
+    background: #e20f07;
+  }
+  .link-cadastro {
+    color: #e20f07;
+  }
+  .link-cadastro:hover {
+    color: #ff4b2b;
+    text-shadow: 0 0 8px rgba(226, 15, 7, 0.8);
+  }
   /* 1. Diminuir o padding da caixa para ganhar espaço */
   .login-box {
     padding: 25px 20px;
@@ -345,5 +372,23 @@ input:-webkit-autofill {
     display: flex;
     flex-direction: column; /* Coloca o link embaixo do texto se não couber */
     gap: 5px;
+  }
+
+  .btn-login:hover {
+    background: #ff4b2b;
+    transform: translateY(-2px);
+    animation: pulse-red 1.5s infinite;
+  }
+
+  @keyframes pulse-red {
+    0% {
+      box-shadow: 0 0 0 0 rgba(226, 15, 7, 0.8);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(226, 15, 7, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(226, 15, 7, 0);
+    }
   }
 }
