@@ -43,7 +43,7 @@ const Login = () => {
       // Dica: Salva o nome ou o ID no localStorage para saber que o user está logado
       localStorage.setItem("treinador", JSON.stringify(response.data));
 
-      alert(`Acesso concedido! Bem-vindo, ${response.data.username}!`);
+      console.log(`Acesso concedido! Bem-vindo, ${response.data.username}!`);
 
       setCamposVazios([]);
       navigate("/home"); // Manda para a página principal

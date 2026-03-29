@@ -71,8 +71,10 @@ const Cadastro = () => {
       navigate("/login");
     } catch (error) {
       // Pega a mensagem que veio lá do seu Controller (Backend)
-      const mensagemErro =
-        error.response?.data?.message || "Erro ao conectar ao Centro Pokémon!";
+      const mensagemErro = 
+        error.response?.data?.error ||
+        error.response?.data?.message ||
+        "Erro ao conectar ao Centro Pokémon!";
       setErro(mensagemErro);
 
       // Lógica para deixar os inputs vermelhos
