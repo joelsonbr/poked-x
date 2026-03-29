@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 
 export const registerUser = async (req, res) => {
     try {
+        console.log("BODY:", req.body);
         const { username, email, password, confirmPassword } = req.body
 
         if (!username || !email || !password || !confirmPassword) {
@@ -43,12 +44,14 @@ export const registerUser = async (req, res) => {
             message: "Usuário criado com sucesso! 🎉"
         });
     } catch (error) {
+        console.error("ERRO REAL:", error);
         res.status(500).json({ message: "Erro no servidor", error: error.message })
     }
 }
 
 export const loginUser = async (req, res) => {
     try {
+        console.log("BODY:", req.body);
         const { email, password } = req.body
 
         if (!email || !password) {
@@ -85,6 +88,7 @@ export const loginUser = async (req, res) => {
             message: `Bem-vindo de volta, ${user.username}! ⚔️`
         })
     } catch (error) {
+        console.error("ERRO REAL:", error);
         res.status(500).json({ message: "Erro no servidor", error: error.message })
     }
 }
